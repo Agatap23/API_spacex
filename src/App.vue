@@ -5,25 +5,31 @@
       :key="post.flight_number"
       :rocketName="post.rocket.rocket_name"
       :desc="launchDetails(post)"
-      :page="index + 1"
+      :page="index + offsetPage"
     />
     <edit-popup v-if="displayPopup" />
+    <pagination />
   </div>
 </template>
 
 <script>
 import launchPost from "./components/launchPost.vue";
 import editPopup from "./components/editPopup.vue";
+import pagination from "./components/pagination.vue";
 
 export default {
   name: "App",
   components: {
     launchPost,
     editPopup,
+    pagination,
   },
   computed: {
     posts: function () {
-      return this.$store.state.launchData;
+      return this.$store.state.currentFeed;
+    },
+    offsetPage: function () {
+      return this.$store.state.offset + 1;
     },
     displayPopup: function () {
       return this.$store.state.displayPopup;

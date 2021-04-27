@@ -39,6 +39,7 @@ header {
 }
 .edit-icon:hover {
   cursor: pointer;
+  color: #7094db;
 }
 .post {
   max-width: 500px;

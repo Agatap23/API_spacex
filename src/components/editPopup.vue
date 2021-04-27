@@ -46,6 +46,7 @@ header {
 }
 .close-box:hover {
   cursor: pointer;
+  color: #7094db;
 }
 .popup-container {
   width: 100%;
