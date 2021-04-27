@@ -1,19 +1,45 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <launch-post
+      v-for="(post, index) in posts"
+      :key="post.flight_number"
+      :rocketName="post.rocket.rocket_name"
+      :desc="launchDetails(post)"
+      :page="index + 1"
+    />
+    <edit-popup v-if="displayPopup" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import launchPost from "./components/launchPost.vue";
+import editPopup from "./components/editPopup.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    launchPost,
+    editPopup,
+  },
+  computed: {
+    posts: function () {
+      return this.$store.state.launchData;
+    },
+    displayPopup: function () {
+      return this.$store.state.displayPopup;
+    },
+  },
+  methods: {
+    launchDetails: function (post) {
+      return post.details === null
+        ? "Unfortunately, there is no description yet."
+        : post.details;
+    },
+  },
+  created() {
+    this.$store.dispatch("fetchData");
+  },
+};
 </script>
 
 <style>
@@ -23,6 +49,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 0;
 }
 </style>

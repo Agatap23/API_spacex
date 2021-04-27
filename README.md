@@ -1,4 +1,6 @@
-# alekurier
+# API from SpaceX 
+
+Simple posts with pagination displaying SpaceX launches - I have limited them to 20. The edit function is not working, it is just a 'mock' function, because I am unable to use any other method than GET on this request. 
 
 ## Project setup
 ```
